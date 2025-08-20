@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template # type: ignore
 import joblib # type: ignore
-
+import os
 # Inisialisasi Flask app
 app = Flask(__name__)
 
