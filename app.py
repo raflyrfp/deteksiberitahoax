@@ -23,5 +23,4 @@ def predict():
         return render_template('index.html', prediction_text=f"Hasil Deteksi: {hasil}")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # ambil PORT dari Railway
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=True)
