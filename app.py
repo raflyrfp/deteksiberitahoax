@@ -22,5 +22,6 @@ def predict():
         hasil = 'Hoaks' if prediction[0] == 1 else 'Valid'
         return render_template('index.html', prediction_text=f"Hasil Deteksi: {hasil}")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # ambil PORT dari Railway
+    app.run(host="0.0.0.0", port=port)
