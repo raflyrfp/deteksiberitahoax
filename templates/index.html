@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deteksi Berita Hoaks</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px; /* Offset for fixed navbar */
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .animate-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+    .animate-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 bg-white bg-opacity-10 backdrop-blur-md shadow-sm border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-white tracking-tight">Deteksi Hoaks</h1>
+      <div class="space-x-6 text-sm">
+        <a href="/" class="text-white hover:text-indigo-400 transition">Home</a>
+        <a href="#contact" class="text-white hover:text-indigo-400 transition">Contact</a>
+        <a href="/predict" class="px-4 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition">Login</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="h-screen w-full bg-cover bg-center flex items-center relative" style="background-image: url('/static/background.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+    <div class="relative z-10 max-w-4xl px-6 mx-auto text-white text-center">
+      <h1 class="text-5xl font-bold leading-tight mb-4">Deteksi Berita Hoaks dengan AI</h1>
+      <p class="text-lg text-gray-300 mb-6">Solusi modern untuk memverifikasi berita dengan cepat dan akurat.</p>
+      <a href="#form" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105">
+        🚀 Coba Sekarang
+      </a>
+    </div>
+  </section>
+
+  <!-- Prediction Form -->
+  <section id="form" class="py-20 bg-black px-4">
+    <div class="max-w-3xl mx-auto bg-white/5 rounded-2xl p-10 shadow-xl backdrop-blur-md border border-white/10 animate-in">
+      <h2 class="text-3xl font-bold text-white text-center mb-6">Masukkan Berita Anda</h2>
+
+      <form method="POST" action="/predict" class="space-y-6">
+        <textarea name="berita" required placeholder="Masukkan teks berita di sini..." class="w-full rounded-xl border border-gray-700 bg-black text-white p-4 min-h-[200px] focus:ring-indigo-500 focus:border-indigo-500 resize-none"></textarea>
+
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition">
+          🔍 Deteksi
+        </button>
+      </form>
+
+      {% if prediction_text %}
+      <div class="mt-6 text-center">
+        <p class="text-xl font-semibold text-green-400">Hasil: {{ prediction_text }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="text-center py-10 text-sm text-gray-500 border-t border-white/10">
+    Kontak: <a href="mailto:raflyramadhani07@gmail.com" class="text-indigo-400 hover:underline">raflyramadhani07@gmail.com</a> | © 2025 Deteksi Hoaks
+  </footer>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.animate-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>

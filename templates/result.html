@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hasil Deteksi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(14px);
+    }
+  </style>
+</head>
+<body class="relative text-white min-h-screen flex items-center justify-center px-6 bg-cover bg-center"
+      style="background-image: url('/static/background.jpg');">
+
+  <div class="absolute inset-0 bg-black bg-opacity-80 backdrop-blur-sm"></div>
+
+  <div class="glass relative z-10 max-w-2xl w-full p-10 rounded-2xl shadow-2xl text-center animate__animated animate__fadeIn">
+    <h2 class="text-3xl font-bold text-indigo-400 mb-8">🧠 Hasil Deteksi Berita</h2>
+
+    <div class="text-left text-gray-300 mb-6">
+      <p class="mb-4"><span class="font-semibold text-white">Berita:</span><br>{{ news }}</p>
+      <p class="text-lg"><span class="font-semibold text-white">Klasifikasi:</span> <span class="text-green-400">{{ prediction }}</span></p>
+    </div>
+
+    <a href="/" class="inline-block mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-full transition transform hover:scale-105">
+      🔁 Coba Lagi
+    </a>
+  </div>
+
+</body>
+</html>
